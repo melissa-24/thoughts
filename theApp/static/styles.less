@@ -1,0 +1,113 @@
+.flexrow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.flexcolumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+@mainbg: #333232;
+@font: #c9c0c0;
+* {
+    border: 1px dotted red;
+}
+
+body {
+    .flexcolumn();
+    background-color: @mainbg;
+    color: @font;
+
+    header {
+        .flexrow();
+        width: 95%;
+        justify-content: space-between;
+
+        a {
+            color: @font;
+            font-size: 1.2em;
+        }
+    }
+    .alt {
+        justify-content: flex-end;
+
+        a {
+            margin: 1em;
+        }
+    }
+
+    .main {
+        .flexrow();
+        align-items: flex-start;
+
+        .form {
+            margin: 15px;
+
+            h3 {
+                margin-top: 15px;
+                margin-bottom: -5px;
+                margin-left: 2px;
+                background-color: @mainbg;
+                padding: 1px;
+                max-width: 60px;;
+            }
+
+            form {
+                border: 3px groove @font;
+                padding: 15px;
+                .flexcolumn();
+
+                section {
+                    .flexrow();
+
+                    label {
+                        margin: 1em;
+                        min-width: 135px;
+                    }
+                    input {
+                        margin: 1em;
+                    }
+                }
+                button {
+                    align-self: flex-end;
+                    margin: 1em;
+                }
+            }
+        }
+    }
+    .dash {
+        .flexcolumn();
+
+        form {
+            .hidden {
+                display: none;
+            }
+        }
+        .main {
+            .flexrow();
+        }
+        .details {
+            .flexrow();
+            width: 95%;
+            justify-content: space-between;
+    
+            a {
+                color: @font;
+                font-size: 1.2em;
+            }
+        }
+        .alt {
+            .flexrow();
+            width: 95%;
+            justify-content: flex-end;
+        }
+
+    }
+    .details {
+        .flexrow();
+        width: 95%;
+    }
+}

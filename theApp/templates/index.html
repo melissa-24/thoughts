@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel='stylesheet' href="{% static 'styles.css' %}">
+    <title>Thoughts Dashboard</title>
+</head>
+<body>
+    <h1>Welcome!</h1>
+    {% if messages %}
+    <section class='messages'>
+        {% for message in messages %}
+        <h3 {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</h3>
+        {% endfor %}
+    </section>
+    {% endif %}
+    <div class='main'>
+        <div class='form'>
+            <h3>Register</h3>
+            <form action='/register/' method='post'>
+                {% csrf_token %}
+                <section>
+                    <label for='firstName'>First Name: </label>
+                    <input type='text' name='firstName'>
+                </section>
+                <section>
+                    <label for='lastName'>Last Name: </label>
+                    <input type='text' name='lastName'>
+                </section>
+                <section>
+                    <label for='email'>Email: </label>
+                    <input type='email' name='email'>
+                </section>
+                <section>
+                    <label for='password'>Password: </label>
+                    <input type='password' name='password'>
+                </section>
+                <section>
+                    <label for='confirm'>Confirm Password: </label>
+                    <input type='password' name='confirm'>
+                </section>
+                <button>Register</button>
+            </form>
+        </div>
+        <div class='form'>
+            <h3>Login</h3>
+            <form action='/login/' method='post'>
+                {% csrf_token %}
+                <section>
+                    <label for='email'>Email: </label>
+                    <input type='email' name='email'>
+                </section>
+                <section>
+                    <label for='password'>Password: </label>
+                    <input type='password' name='password'>
+                </section>
+                <button>Login</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

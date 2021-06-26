@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel='stylesheet' href="{% static 'styles.css' %}">
+    <title>{{user.firstName}}'s Dashboard</title>
+</head>
+<body>
+    <header>
+        <h1>Hi {{user.firstName}} {{user.lastName}}!</h1>
+        <a href='/logout/'>Log out</a>
+    </header>
+    <div class='dash'>
+        <form action='/createThought/' method='post'>
+            {% csrf_token %}
+            <input type='text' name='thought'>
+            <section class='hidden'>
+                <input type='text' name='postedBy' value='{{user.id}}'>
+            </section>
+            <button>Add Thought!</button>
+        </form>
+        {% for post in posts %}
+        <div class='main'>
+            <p>{{post.poster.firstName}} Says: </p>
+            <p>{{post.thought}}</p>
+            {% if post.poster_id == user.id %}
+            <button><a href='/thought/{{post.id}}/delete/'>Delete</a></button>
+            {% endif %}
+        </div>
+        <div class='details'>
+            <button><a href='/thought/{{post.id}}/'>Details</a></button>
+            <p> Users like this thought</p>
+        </div>
+    {% endfor %}
+    </div>
+</body>
+</html>

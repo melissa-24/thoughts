@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel='stylesheet' href="{% static 'styles.css' %}">
+    <title>Edit Thought</title>
+</head>
+<body>
+    <header class='alt'>
+        <a href='/thoughts/'>Dashboard</a>
+        <a href='/logout/'>Logout</a>
+    </header>
+    <div class='main'>
+        <h3>Current thought:</h3>
+        <p>{{edit.thought}}</p>
+    </div>
+    <div class='dash'>
+        <form action='/thought/{{edit.id}}/edit/' method='post'>
+        {% csrf_token %}
+            <input type='text' name='thought' value='{{edit.thought}}'>
+            <button>Update Thought</button>
+        </form>
+    </div>
+</body>
+</html>
